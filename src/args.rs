@@ -57,7 +57,7 @@ pub enum ValidatorAction {
 ///
 /// Reference: https://toml-schema.org/
 #[derive(Parser)]
-#[clap(version, about, arg_required_else_help = true)]
+#[clap(version, about)]
 pub struct Args {
     /// Don't print anything to stdout. Will still print usage errors.
     #[arg(short, long, default_value_t = false)]

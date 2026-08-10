@@ -14,7 +14,7 @@
 [dependencies]
   anyhow = "1.0.104"
   clap = { version = "4.6.6", features = ["cargo", "derive"] }
-  ovation = "=4.0.0"
+  ovation = "=4.1.0"
   patharg = "0.4.1"
   serde = { version = "1.0.229", features = ["derive"] }
   toml = "=0.8.23"

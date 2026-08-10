@@ -34,6 +34,15 @@ impl Args {
     pub fn execute() -> ovation::err::OvationResult<Self> {
         <Self as CommandContext>::execute()
     }
+
+    #[allow(dead_code)]
+    pub fn execute_from<I, T>(args: I) -> ovation::err::OvationResult<Self>
+    where
+        T: Into<std::ffi::OsString> + Clone,
+        I: IntoIterator<Item = T>,
+    {
+        <Self as CommandContext>::execute_from(args)
+    }
 }
 
 impl CommandSet<Args> for ValidatorAction {

@@ -188,9 +188,9 @@ checksum = "384b8ab6d37215f3c5301a95a4accb5d64aa607f1fcb26a11b5303878451b4fe"
 
 [[package]]
 name = "ovation"
-version = "4.0.0"
+version = "4.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8f8b67c8f88f30b6e6da340dba8a3a113c1a48657ea288e4e9ccfbe93ff4f65d"
+checksum = "2c9413381f41c06fe9fb71cd8c6e1716f6c7f6c384cfae33dbc6e227e4f11d41"
 dependencies = [
  "clap",
 ]
