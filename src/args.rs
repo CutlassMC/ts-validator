@@ -21,7 +21,8 @@ pub enum ValidatorAction {
     /// Validate a toml file against a provided schema. Defaults to using
     /// `toml-schema.location` as the schema to read.
     ValidateToml {
-        /// The schema to validate against.
+        /// The schema to validate against. If not provided,
+        /// `toml-schema.location` must be present in the target toml.
         #[arg(name = "schema", short, long)]
         schema_path: Option<patharg::InputArg>,
 
@@ -56,7 +57,7 @@ pub enum ValidatorAction {
 ///
 /// Reference: https://toml-schema.org/
 #[derive(Parser)]
-#[clap(version, about)]
+#[clap(version, about, arg_required_else_help = true)]
 pub struct Args {
     /// Don't print anything to stdout. Will still print usage errors.
     #[arg(short, long, default_value_t = false)]
