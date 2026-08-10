@@ -1,0 +1,35 @@
+# Metadata
+[toml-schema]
+version = "1.0.0"
+
+# Types
+[types]
+
+    # Schema definitions are open tables here because the reference
+    # implementations enforce schema property types at load time.
+    [types.schemaDef]
+    type = "table"
+
+# Elements
+[elements]
+
+    [elements.toml-schema]
+    type = "table"
+
+        [elements.toml-schema.version]
+        type = "string"
+        pattern = '^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(?:-((?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$'
+
+        [elements.toml-schema.meta]
+        type = "table"
+        optional = true
+
+    [elements.types]
+    type = "collection"
+    typeof = "types.schemaDef"
+    minlength = 0
+
+    [elements.elements]
+    type = "collection"
+    typeof = "types.schemaDef"
+    minlength = 1
