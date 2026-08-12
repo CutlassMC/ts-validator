@@ -8,15 +8,12 @@
       flake-parts.url = "github:hercules-ci/flake-parts";
       flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
 
-      toml-schema-source.url = "github:brunoborges/toml-schema/v1.0.0-rc.2";
-      toml-schema-source.flake = false;
-
       rust-module.url = "github:MaxTheMooshroom/flake-module-rust";
       rust-module.inputs.flake-parts.follows = "flake-parts";
     };
 
   outputs =
-    { flake-parts, rust-module, toml-schema-source, ... }@inputs:
+    { flake-parts, rust-module, ... }@inputs:
     flake-parts.lib.mkFlake
       { inherit inputs; }
       (
@@ -54,7 +51,7 @@
                             pkgs.rustPlatform.importCargoLock
                               {
                                 lockFile = ./Cargo.lock;
-                                outputHashes."toml-schema-${self'.packages.toml-schema.version}" =
+                                outputHashes."toml-schema-1.0.0-rc.2" =
                                   "sha256-G/L0iZp+aRm+BpZlk7CiRc8ipDV9vboM+P+hctNX6zI=";
                               };
 
@@ -71,37 +68,9 @@
                           '';
 
                           postFixup = /* bash */ ''
-                            wrapProgram "$out/bin/ts-validator" \
+                            wrapProgram "$out/bin/toml-schema" \
                               --set-default COMPLETIONS_DIR "$out/share/ts-validator/completions"
                           '';
-                        }
-                      );
-
-                  toml-schema =
-                    pkgs.rustPlatform.buildRustPackage
-                      (
-                        finalAttrs:
-                        {
-                          pname = "toml-schema";
-                          version = "1.0.0-rc.2";
-
-                          src = toml-schema-source;
-
-                          cargoRoot = "reference-implementations/rust";
-                          buildAndTestSubdir = finalAttrs.cargoRoot;
-                          cargoDeps =
-                            pkgs.rustPlatform.fetchCargoVendor
-                              {
-                                pname = "${finalAttrs.pname}-deps";
-
-                                inherit (finalAttrs)
-                                  version
-                                  src
-                                  cargoRoot
-                                  ;
-
-                                hash = "sha256-2+O1y+iSVJMyvLzVpPMvYBl3+HRAbDP0Bbv2wglnt7g=";
-                              };
                         }
                       );
                 };
@@ -115,6 +84,8 @@
                           with pkgs;
                           [
                             self'.rust-bins
+
+                            cargo-workspaces
 
                             # Cargo subcommand to show result of
                             # macro expansion

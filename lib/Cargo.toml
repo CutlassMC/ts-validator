@@ -1,0 +1,27 @@
+[package]
+  name = "ts-validator-lib"
+  version.workspace = true
+  edition.workspace = true
+
+[features]
+  default = ["ref-impl"]
+  ref-impl = [ "dep:toml-schema", "backend" ]
+  const-impl = [ "dep:phf", "backend" ]
+  # exists so we can throw an error if no backend is selected without
+  # manually checking each backend.
+  backend = []
+
+[dependencies]
+  anyhow = "1.0.104"
+  patharg = "0.4.1"
+  phf = { version = "0.14.0", optional = true }
+  semver = { version = "1.0.28", features = ["serde"] }
+  serde = { version = "1.0.229", features = ["derive"] }
+  toml.workspace = true
+
+  [dependencies.toml-schema]
+    optional = true
+    git = "https://github.com/brunoborges/toml-schema/"
+    version = "1.0.0-rc.2"
+    tag = "v1.0.0-rc.2"
+

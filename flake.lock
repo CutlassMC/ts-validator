@@ -134,8 +134,7 @@
       "inputs": {
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs",
-        "rust-module": "rust-module",
-        "toml-schema-source": "toml-schema-source"
+        "rust-module": "rust-module"
       }
     },
     "rust-module": {
@@ -176,23 +175,6 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "toml-schema-source": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1779941379,
-        "narHash": "sha256-G/L0iZp+aRm+BpZlk7CiRc8ipDV9vboM+P+hctNX6zI=",
-        "owner": "brunoborges",
-        "repo": "toml-schema",
-        "rev": "fc78a46eedef5f79dae0c60a8e228a5cfd16cd19",
-        "type": "github"
-      },
-      "original": {
-        "owner": "brunoborges",
-        "ref": "v1.0.0-rc.2",
-        "repo": "toml-schema",
         "type": "github"
       }
     }

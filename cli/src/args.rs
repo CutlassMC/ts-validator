@@ -3,28 +3,13 @@ use clap::{Parser, Subcommand};
 #[derive(Subcommand)]
 #[clap(name = "action")]
 pub enum ValidatorAction {
-    /// Extract a schema prototype from a toml file, assuming its values' types
-    /// as the schema's value types.
-    Extract {
-        /// The toml file to generate a schema prototype for.
-        ///
-        /// Use `-` to read from stdin.
-        toml_path: patharg::InputArg,
-
-        /// Where to write the schema file to.
-        ///
-        /// Use `-` for stdout.
-        #[clap(name = "out", default_value = "-")]
-        out_path: patharg::OutputArg,
-    },
-
     /// Validate a toml file against a provided schema. Defaults to using
     /// `toml-schema.location` as the schema to read.
     ValidateToml {
         /// The schema to validate against. If not provided,
         /// `toml-schema.location` must be present in the target toml.
         #[arg(name = "schema", short, long)]
-        schema_path: Option<patharg::InputArg>,
+        schema_path: Option<std::path::PathBuf>,
 
         /// The toml file to validate. Defaults to reading from stdin.
         #[clap(name = "toml", default_value = "-")]
