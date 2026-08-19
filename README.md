@@ -1,8 +1,8 @@
 
 # Toml-Schema Validator (`ts-validator`)
 
-A command-line tool for validating TOML files against [TOML Schema](https://toml-schema.org/) Definitions
-(TOSD), as well as generating schema prototypes from existing TOML files.
+A command-line tool for validating TOML files against [**TO**ML Schema](https://toml-schema.org/)
+**S**chema **D**efinitions (TOSD).
 
 ## Quickstart
 
@@ -18,6 +18,65 @@ cargo install --git https://github.com/CutlassMC/ts-validator
 
 ```bash
 nix profile add github:CutlassMC/ts-validator
+```
+
+### Usage
+
+`toml-schema` has 2 (relevant*) subcommands: `validate-toml` and `validate-tosd`, which validate
+their respective file types.
+
+#### Validate TOML
+
+```
+$ toml-schema validate-toml --help
+Validate a toml file against a provided schema. Defaults to using `toml-schema.location` as the schema to read
+
+Usage: toml-schema validate-toml [OPTIONS] [toml]
+
+Arguments:
+  [toml]  The toml file to validate. Defaults to reading from stdin [default: -]
+
+Options:
+  -s, --schema <schema>  The schema to validate against. If not provided, `toml-schema.location` must be present in the target toml
+  -h, --help             Print help
+
+```
+
+#### Validate TOSD
+
+**NOTE**: Due to a limitation in the reference implementation, `typeof` references (and likely others)
+are only checked if they are used. This means that the best way to validate a TOSD is to use it on an
+example file.
+
+```
+$ toml-schema validate-tosd --help
+Check if a tosd file is valid
+
+Usage: toml-schema validate-tosd [tosd]
+
+Arguments:
+  [tosd]  The tosd file to validate. Defaults to reading from stdin [default: -]
+
+Options:
+  -h, --help  Print help
+
+```
+
+#### Misc
+
+* A 3rd command `completions` exists to get shell completions for `toml-schema`:
+```
+$ toml-schema completions --help
+Return shell completions
+
+Usage: toml-schema completions [OPTIONS] <SHELL>
+
+Arguments:
+  <SHELL>  Which shell to get the completions for [possible values: bash, elvish, fish, powershell, zsh]
+
+Options:
+  -f, --file  Return a filepath to the completion instead of writing the contents to stdout
+
 ```
 
 ### Schema Example
@@ -118,7 +177,7 @@ The following file header is required to be first in schema files:
   address = "0.0.0.0"
 ```
 
-### Nix Flake Input
+## Nix Flake Input
 
 ```nix
 {
