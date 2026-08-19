@@ -1,8 +1,7 @@
 
 # Toml-Schema Validator (`ts-validator`)
 
-A command-line tool for validating TOML files against [**TO**ML Schema](https://toml-schema.org/)
-**S**chema **D**efinitions (TOSD).
+A command-line tool for validating TOML files against [**TO**ML **S**chema](https://toml-schema.org/) **D**efinitions (TOSD).
 
 ## Quickstart
 
